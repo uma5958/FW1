@@ -1347,6 +1347,19 @@ public class ActionUtil {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("document.body.style.zoom = '"+zoom+"%';");
 	}
+	
+	public static void openNewBlankTab(WebDriver driver) {
+		((JavascriptExecutor) driver).executeScript("window.open()");
+	}
+	
+	public static void openNewTabAndNavigateToGivenUrl(WebDriver driver, String url) {
+		((JavascriptExecutor) driver).executeScript("window.open('"+url+"')");
+	}
+	
+	public static void openNewTabAndNavigateToGivenUrl2(WebDriver driver, String url) {
+		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");// open in new tab
+		driver.get(url);
+	}
 
 	// Ajax Utils================================================================================
 	public static <T> void ajaxJsClick(String elementName, T elementAttr){
@@ -2506,7 +2519,7 @@ public class ActionUtil {
 		return timeStamp;
 	}
 
-
+	
 
 
 
