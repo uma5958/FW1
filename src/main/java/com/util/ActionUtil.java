@@ -60,7 +60,7 @@ import com.github.javafaker.Faker;
 
 
 public class ActionUtil {
-	
+
 	public static final String calendarTimeFormat = "dd/MM/yyyy, EEE";
 
 	//================ Action Methods Set 1 =================
@@ -124,7 +124,7 @@ public class ActionUtil {
 
 	public static void waitForEitherOfElementToBeDisplayed(String element1Name, By element1, String element2Name, By element2, long timeOutInSeconds) {
 		log("Waiting for either of the elements: "+element1Name
-					+" (or) "+element2Name+" to be displayed for maximum "+timeOutInSeconds+" Seconds");
+				+" (or) "+element2Name+" to be displayed for maximum "+timeOutInSeconds+" Seconds");
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			wait.until(ExpectedConditions.or(
@@ -677,15 +677,21 @@ public class ActionUtil {
 			waitForElementPresent(fromElementName, (By) fromWebElementAttr);
 			WebElement ele1 = driver.findElement((By)fromWebElementAttr);
 			WebElement ele2 = driver.findElement((By)toWebElementAttr);
-			builder.clickAndHold(ele1).moveToElement(ele2).perform();
-			Thread.sleep(2000);
-			builder.release(ele2).build().perform();
+			Action dragAndDrop = builder.clickAndHold(ele1)
+					.moveByOffset(-1, -1)
+					.moveToElement(ele2)
+					.release(ele2)
+					.build();
+			dragAndDrop.perform();
 		} else {
 			WebElement ele1 = ((WebElement)fromWebElementAttr);
 			WebElement ele2 = ((WebElement)toWebElementAttr);
-			builder.clickAndHold(ele1).moveToElement(ele2).perform();
-			Thread.sleep(2000);
-			builder.release(ele2).build().perform();
+			Action dragAndDrop = builder.clickAndHold(ele1)
+					.moveByOffset(-1, -1)
+					.moveToElement(ele2)
+					.release(ele2)
+					.build();
+			dragAndDrop.perform();
 		}
 	}
 
@@ -1347,15 +1353,15 @@ public class ActionUtil {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		jse.executeScript("document.body.style.zoom = '"+zoom+"%';");
 	}
-	
+
 	public static void openNewBlankTab(WebDriver driver) {
 		((JavascriptExecutor) driver).executeScript("window.open()");
 	}
-	
+
 	public static void openNewTabAndNavigateToGivenUrl(WebDriver driver, String url) {
 		((JavascriptExecutor) driver).executeScript("window.open('"+url+"')");
 	}
-	
+
 	public static void openNewTabAndNavigateToGivenUrl2(WebDriver driver, String url) {
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");// open in new tab
 		driver.get(url);
@@ -1823,15 +1829,21 @@ public class ActionUtil {
 			waitForElementPresent(fromElementName, (By) fromWebElementAttr);
 			WebElement ele1 = driver.findElement((By)fromWebElementAttr);
 			WebElement ele2 = driver.findElement((By)toWebElementAttr);
-			builder.clickAndHold(ele1).moveToElement(ele2).perform();
-			Thread.sleep(2000);
-			builder.release(ele2).build().perform();
+			Action dragAndDrop = builder.clickAndHold(ele1)
+					.moveByOffset(-1, -1)
+					.moveToElement(ele2)
+					.release(ele2)
+					.build();
+			dragAndDrop.perform();
 		} else {
 			WebElement ele1 = ((WebElement)fromWebElementAttr);
 			WebElement ele2 = ((WebElement)toWebElementAttr);
-			builder.clickAndHold(ele1).moveToElement(ele2).perform();
-			Thread.sleep(2000);
-			builder.release(ele2).build().perform();
+			Action dragAndDrop = builder.clickAndHold(ele1)
+					.moveByOffset(-1, -1)
+					.moveToElement(ele2)
+					.release(ele2)
+					.build();
+			dragAndDrop.perform();
 		}
 		waitForAjax(driver);
 	}
@@ -2519,7 +2531,7 @@ public class ActionUtil {
 		return timeStamp;
 	}
 
-	
+
 
 
 
